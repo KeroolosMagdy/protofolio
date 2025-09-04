@@ -458,7 +458,66 @@
   </header>
 
   <!-- ===== Hero ===== -->
- <section id="home" class="hero">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirollos Magdy - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS لإضافة طبقة فوق المحتوى لعرض الـ CV */
+        #pdf-viewer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #pdf-viewer-overlay .pdf-container {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            max-width: 1000px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #pdf-viewer-overlay .pdf-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        #pdf-viewer-overlay .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fff;
+            color: #000;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+<section id="home" class="hero">
     <canvas id="particle-canvas"></canvas>
     <div>
         <h1 data-aos="fade-up">Hi, I'm <span style="background:linear-gradient(90deg,var(--brand),var(--brand-2));-webkit-background-clip:text;color:transparent"> Kirollos Magdy</span></h1>
@@ -467,7 +526,7 @@
         </p>
         <div class="cta" data-aos="fade-up" data-aos-delay="200">
             <a class="btn btn-primary" href="#projects"><i class="fa-solid fa-eye"></i> View Projects</a>
-            <a class="btn btn-ghost" href="#" id="view-pdf" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> View CV</a>
+            <a class="btn btn-ghost" href="#" id="view-pdf-btn"><i class="fa-solid fa-file-arrow-down"></i> View CV</a>
             <a class="btn btn-ghost" href="https://raw.githubusercontent.com/KeroolosMagdy/protofolio/86c65d972ab1f496abd5bb7d38ee3663de06a28e/Kirolos%20Magdy.pdf" download><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
         </div>
         <div class="socials" data-aos="fade-up" data-aos-delay="300">
@@ -482,10 +541,46 @@
         <span class="ring"></span>
         <img src="https://raw.githubusercontent.com/KeroolosMagdy/protofolio/86c65d972ab1f496abd5bb7d38ee3663de06a28e/WhatsApp%20Image%202025-07-02%20at%2017.16.20_7aff3d9e.jpg" alt="Kerolos Magdy" class="pfp" />
     </div>
-    <div id="pdf-viewer" style="display:none;">
-        <iframe src="https://raw.githubusercontent.com/KeroolosMagdy/protofolio/86c65d972ab1f496abd5bb7d38ee3663de06a28e/Kirolos%20Magdy.pdf" width="100%" height="600px"></iframe>
-    </div>
 </section>
+
+<div id="pdf-viewer-overlay">
+    <div class="pdf-container">
+        <button class="close-btn">&times;</button>
+        <iframe src="https://raw.githubusercontent.com/KeroolosMagdy/protofolio/86c65d972ab1f496abd5bb7d38ee3663de06a28e/Kirolos%20Magdy.pdf"></iframe>
+    </div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const viewPdfButton = document.getElementById('view-pdf-btn');
+        const pdfViewerOverlay = document.getElementById('pdf-viewer-overlay');
+        const closeButton = document.querySelector('#pdf-viewer-overlay .close-btn');
+
+        viewPdfButton.addEventListener('click', function(event) {
+            event.preventDefault(); 
+            // إظهار نافذة عرض الـ PDF
+            pdfViewerOverlay.style.display = 'flex';
+        });
+
+        closeButton.addEventListener('click', function() {
+            // إخفاء نافذة عرض الـ PDF
+            pdfViewerOverlay.style.display = 'none';
+        });
+
+        // إخفاء النافذة عند الضغط خارجها
+        pdfViewerOverlay.addEventListener('click', function(event) {
+            if (event.target === pdfViewerOverlay) {
+                pdfViewerOverlay.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>  
 
 <style>
 .pfp {
