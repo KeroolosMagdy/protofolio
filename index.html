@@ -458,7 +458,7 @@
   </header>
 
   <!-- ===== Hero ===== -->
-<section id="home" class="hero">
+ <section id="home" class="hero">
     <canvas id="particle-canvas"></canvas>
     <div>
         <h1 data-aos="fade-up">Hi, I'm <span style="background:linear-gradient(90deg,var(--brand),var(--brand-2));-webkit-background-clip:text;color:transparent"> Kirollos Magdy</span></h1>
@@ -483,16 +483,17 @@
 
 <style>
 .pfp {
-    width: 350px; /* أو الحجم الذي تريده */
-    height: auto; /* للحفاظ على نسبة العرض إلى الارتفاع */
+    width: 350px; /* الحفاظ على العرض نفسه */
+    height: 350px; /* تعيين الارتفاع لجعله دائري */
+    border-radius: 50%; /* جعل الصورة دائرية */
+    object-fit: cover; /* تغطية الصورة بالكامل */
     transition: transform 0.3s ease; /* تأثير حركة سلس */
 }
 
 .pfp-wrap:hover .pfp {
-    transform: scale(1.5); /* تكبير الصورة بنسبة 10% عند التمرير فوقها */
+    transform: scale(1.1); /* تكبير الصورة بنسبة 10% عند التمرير فوقها */
 }
 </style>
-
   <!-- ===== About ===== -->
   <section id="about">
     <h2 class="section-title" data-aos="fade-up">About Me</h2>
